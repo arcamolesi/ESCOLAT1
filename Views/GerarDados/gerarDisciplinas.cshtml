@@ -1,0 +1,41 @@
+@model IEnumerable<ESCOLAT1.Models.Disciplina>
+
+@{
+    ViewData["Title"] = "Gerar Disciplinas";
+}
+
+<h1>Gerar Disciplinas</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+           <th>
+                @Html.DisplayNameFor(model => model.Curso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Curso.Area)
+            </th>
+            
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                        <td>
+                @Html.DisplayFor(modelItem => item.Curso.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curso.Area)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
