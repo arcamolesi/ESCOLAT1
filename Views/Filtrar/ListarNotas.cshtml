@@ -1,0 +1,81 @@
+@model IEnumerable<ESCOLAT1.Models.Nota>
+
+@{
+    ViewData["Title"] = "Listar Notas";
+}
+
+<h1>Listar Notas</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Disciplina.Curso)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aluno)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Disciplina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Semestre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Valor)
+            </th>
+            <th>Qtde</th>
+            <th>Total</th>
+    
+        </tr>
+    </thead>
+    <tbody>
+        @{float soma =0;
+          int qtreg=0; 
+         }
+
+        @foreach (var item in Model) {
+        <tr>
+            <td> 
+                @Html.DisplayFor(modelItem => item.Disciplina.Curso.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aluno.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Disciplina.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Semestre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valor)
+            </td>
+             @{
+                Random randon = new Random(); 
+                int qtde = randon.Next(0,50); 
+            }
+            <td>
+                @qtde.ToString("N2")
+            </td>
+            @{
+                float total = qtde * item.Valor;  
+                soma = soma + total; 
+                qtreg++; 
+            }
+            <td>
+                @total.ToString("N2")
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
+
+@{ float media = soma/qtreg;}
+
+
+<h3>Total de registros: @qtreg.ToString("N2")</h3>
+<h3>Soma de total: @soma.ToString("N2")</h3>
+<h3>Média de Total: @media.ToString("N2")</h3>

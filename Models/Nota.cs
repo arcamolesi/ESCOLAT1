@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace ESCOLAT1.Models
 
         [Required]
         [Range(0, 10)]
+        [DisplayName("Nota")]
         public float Valor { get; set; }
     }
 }
