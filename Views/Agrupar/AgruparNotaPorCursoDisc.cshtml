@@ -1,0 +1,67 @@
+@model IEnumerable<ESCOLAT1.Models.ViewModel.AgpNtPorCursoDisp>
+
+@{
+    ViewData["Title"] = "AgruparNotaPorCursoDisc";
+}
+
+<h1>Agrupar Nota Por Curso e Disciplina</h1>
+
+<table
+    class="table"
+    >
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.curso)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.disciplina)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.somaNota)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.contNota)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.medNota)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.maxNota)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.minNota)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (ESCOLAT1.Models.ViewModel.AgpNtPorCursoDisp item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.curso)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.disciplina)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.somaNota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.contNota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.medNota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.maxNota)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.minNota)
+                    </td>
+ 
+                </tr>
+            }
+        </tbody>
+    </table>

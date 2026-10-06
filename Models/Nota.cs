@@ -32,5 +32,8 @@ namespace ESCOLAT1.Models
         [Range(0, 10)]
         [DisplayName("Nota")]
         public float Valor { get; set; }
+    
+   
+    
     }
 }

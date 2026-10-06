@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ESCOLAT1.Models;
 using Microsoft.EntityFrameworkCore;
+using ESCOLAT1.Models.ViewModel;
 
 namespace ESCOLAT1.Data
 {
@@ -53,5 +54,6 @@ namespace ESCOLAT1.Data
 
             base.OnModelCreating(modelBuilder);
         }
+        public DbSet<ESCOLAT1.Models.ViewModel.AgpNtPorCursoDisp> AgpNtPorCursoDisp { get; set; }
     }
 }

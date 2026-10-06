@@ -1,3 +1,5 @@
+@using System.ComponentModel.Design
+@using System.Net.Mime
 @model IEnumerable<ESCOLAT1.Models.Nota>
 
 @{
@@ -73,9 +75,57 @@
     </tbody>
 </table>
 
-@{ float media = soma/qtreg;}
+@{ 
+    float media = soma/qtreg;
 
+    float somaNota = Model.Sum(n =>n.Valor); 
+    int contReg = Model.Count();
+    float medNota = somaNota / contReg; 
+    float medNota2 = Model.Average(m => m.Valor); 
+    float max = Model.Max(m => m.Valor); 
+    float min = Model.Min(m => m.Valor); 
+}
 
+<h3>--------------------- Total Geral --------------</h3>
 <h3>Total de registros: @qtreg.ToString("N2")</h3>
 <h3>Soma de total: @soma.ToString("N2")</h3>
 <h3>Média de Total: @media.ToString("N2")</h3>
+
+<h4>--------------Total com base no atributo Valor -------------------</h4>
+<h4>Soma Nota:  @somaNota </h4>
+<h4>Total Registros: @contReg </h4>
+<h4>Media Nota Calculo: @medNota </h4>
+<h4>Média Nota Função Lambda: @medNota2 </h4>
+<h4>Maior Nota: @max </h4>
+<h4>Menor Nota: @min</h4>
+
+<h3>Soma de notas por curso</h3>
+@* 
+@{
+    var somaPorCurso = Model
+        .GroupBy(n => n.Disciplina.Curso.Descricao)
+        .Select(g => new
+        {
+            Curso = g.Key,
+            SomaNotas = g.Sum(n => n.Valor)
+        })
+        .OrderBy(x => x.Curso);
+}
+
+<table class="table table-striped" style="max-width: 500px;">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Soma total de notas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in somaPorCurso)
+        {
+            <tr>
+                <td>@item.Curso</td>
+                <td>@item.SomaNotas.ToString("N2")</td>
+            </tr>
+        }
+    </tbody>
+</table> *@
