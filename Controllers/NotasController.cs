@@ -63,10 +63,17 @@ namespace ESCOLAT1.Controllers
         {
             if (ModelState.IsValid)
             {
+                //regra de negócio para somar a nota do aluno no campo valorHora 
+                // regar ficticia criada para ilustrar alteração de dados em outra tabela, no caso a tabela Aluno
+                var aluno = _context.Alunos.Find(nota.AlunoId);
+                if (aluno != null)
+                {
+                    aluno.ValorHora = aluno.ValorHora + nota.Valor;
+                }
                 _context.Add(nota);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
+
             ViewData["AlunoId"] = new SelectList(_context.Alunos, "Id", "Nome", nota.AlunoId);
             ViewData["DisciplinaId"] = new SelectList(_context.Disciplinas, "Id", "Descricao", nota.DisciplinaId);
             return View(nota);
@@ -128,6 +135,7 @@ namespace ESCOLAT1.Controllers
         }
 
         // GET: Notas/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -155,6 +163,12 @@ namespace ESCOLAT1.Controllers
             var nota = await _context.Notas.FindAsync(id);
             if (nota != null)
             {
+                var aluno = _context.Alunos.Find(nota.AlunoId);
+                if (aluno != null)
+                {
+                    aluno.ValorHora = aluno.ValorHora - nota.Valor;
+                }
+
                 _context.Notas.Remove(nota);
             }
 
